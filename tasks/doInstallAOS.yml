@@ -1,0 +1,12 @@
+---
+- name: Create Alfresco AOS dist directory to hold unarchived distribution files
+  file: path={{ alf_home }}/dist/aos state=directory
+
+- name: Copy Alfresco AOS distribution archive
+  copy: src=files/third-party/{{ aos_archive }} dest=/tmp/
+
+- name: Extract Alfresco archive
+  unarchive: src=/tmp/{{ aos_archive }} dest={{ alf_home }}/dist/aos copy=no
+
+- name: Copy AOS AMP
+  shell: 'cp {{ alf_home }}/dist/aos/*.amp {{ alf_home }}/amps/'

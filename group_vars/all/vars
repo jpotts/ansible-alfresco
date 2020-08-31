@@ -1,0 +1,96 @@
+alf_home: "/opt/alfresco"
+alf_data: "{{ alf_home }}/alf_data"
+alf_dir_contentstore: contentstore
+alf_dir_contentstore_deleted: contentstore.deleted
+
+alf_initial_admin_password: "{{ vault_alf_initial_admin_password }}"
+alf_context: alfresco
+alf_host: 127.0.0.1
+alf_port: 8080
+alf_protocol: http
+
+share_context: share
+share_host: 127.0.0.1
+share_port: 8080
+share_protocol: http
+
+alf_index_subsystem: solr6
+alf_solr_host: localhost
+alf_solr_port: 8983
+
+alf_tomcat_protocol: http
+alf_tomcat_web_port: 8080
+alf_tomcat_ajp_port: 8009
+alf_tomcat_access_logs_dir: logs
+alf_tomcat_catalina_logs_dir: "{{ alf_home }}/tomcat/logs"
+
+proxy_enabled: false
+proxy_host: localhost
+proxy_port: 80
+proxy_secure: "false"
+proxy_scheme: http
+
+alf_user: "alfresco"
+alf_group: "alfresco"
+java_opts_xmx: 15250M
+
+alf_install_dir: /opt/alfresco-6.2.0
+alf_archive: "alfresco-content-services-community-distribution-6.2.0-ga.zip"
+alf_archive_root_dir: "alfresco-content-services-community-distribution-6.2.0-ga"
+tomcat_archive: "apache-tomcat-8.5.34.tar.gz"
+tomcat_dir: "apache-tomcat-8.5.34"
+search_archive: "alfresco-search-services-1.4.0.zip"
+search_install_dir: '{{ alf_install_dir }}/alfresco-search-services'
+
+alf_db_driver: org.postgresql.Driver
+alf_db_driver_file: postgresql-42.2.1.jar
+alf_db_username: alfresco
+alf_db_password: "{{ vault_alf_db_password }}"
+alf_db_name: alfresco
+alf_db_url: "jdbc:postgresql://localhost:5432/${db.name}"
+
+alf_java_home: "/usr/java/jdk-11.0.1"
+
+activemq_archive: "apache-activemq-5.15.6-bin.tar.gz"
+activemq_dir: "apache-activemq-5.15.6"
+activemq_opts_memory: "-Xms64M -Xmx1G"
+activemq_user: "{{ alf_user }}"
+
+alf_clustering_enabled: false
+
+alf_notification_email: "false"
+
+alf_smart_folders_enabled: "false"
+
+alf_aos_base_url: http://localhost/alfresco/aos
+
+alf_ftp_port: 2121
+
+alf_jmx_monitor_password: "{{ vault_alf_jmx_monitor_password }}"
+alf_jmx_control_password: "{{ vault_alf_jmx_control_password }}"
+
+solr_java_mem: -Xms512m -Xmx512m
+solr_port: 8983
+solr_content_dir: "{{ alf_home }}/alfresco-search-services"
+solr_home: "{{ alf_home }}/alfresco-search-services/solrhome"
+solr_java_home: "/usr/java/jdk-11.0.1"
+solr_is_primary: true
+solr_is_replica: false
+solr_primary_host: localhost
+solr_primary_port: 8080
+solr_alfresco_host: localhost
+solr_alfresco_ssl_port: 8443
+solr_alfresco_port: 8080
+solr_alfresco_secure_comms: none
+
+audit_enabled: false
+trashcan_cleaner_enabled: false
+
+mail_host: localhost
+mail_from: alfresco.donotreply@alfresco.com
+
+thumbnails_enabled: true
+
+transformations_enabled: true
+
+ssl_enabled: false

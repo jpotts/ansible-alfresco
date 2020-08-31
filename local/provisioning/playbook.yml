@@ -1,0 +1,73 @@
+---
+- hosts: all
+
+  vars:
+    alf_user: "alfresco"
+    alf_group: "alfresco"
+    pub_ssh_key: "/home/jpotts/.ssh/id_rsa.pub"
+
+  tasks:
+  - name: Install selinux bindings
+    yum: name=libselinux-python state=present
+
+  - name: Install net-tools
+    yum: name=net-tools state=present
+
+  - name: Install lsof
+    yum: name=lsof state=present
+
+  - name: Install unzip
+    yum: name=unzip state=present
+
+  - name: Create {{ alf_group }} group
+    user: name={{ alf_group }}
+
+  - name: Create {{ alf_user }} user
+    user: name={{ alf_user }} shell=/bin/bash group={{ alf_group }}
+
+  - name: Add key to {{ alf_user }}'s authorized keys
+    authorized_key: user={{ alf_user }} key="{{ lookup('file', pub_ssh_key) }}"
+
+  - name: Create /app directory
+    file: dest=/app mode=755 owner={{ alf_user }} group={{ alf_group }} state=directory
+
+  - name: Install iptables-services
+    yum:
+      name: iptables-services
+      state: present
+
+#  - name: Get iptables rules
+#    shell: iptables -L
+#    register: iptablesrules
+#    changed_when: false
+#    become: true
+
+#  - name: Add port 8080 iptable rule
+#    command: /sbin/iptables -I INPUT 1 -p tcp --dport 8080 -j ACCEPT -m comment --comment "Tomcat HTTP"
+#    become: true
+#    when: iptablesrules.stdout.find("Tomcat HTTP") == -1
+
+#  - name: Add port 8443 iptable rule
+#    command: /sbin/iptables -I INPUT 1 -p tcp --dport 8443 -j ACCEPT -m comment --comment "Tomcat HTTPS"
+#    become: true
+#    when: iptablesrules.stdout.find("Tomcat HTTPS") == -1
+
+#  - name: save iptables
+#    shell: iptables-save > /etc/sysconfig/iptables
+#    become: true
+
+#  - name: restart iptables
+#    service: name=iptables state=restarted
+#    become: true
+
+  - name: Copy limits.conf to set open file limits
+    copy: src=files/limits.conf dest=/etc/security/limits.conf
+
+  - name: Copy sysctl.conf
+    copy: src=files/sysctl.conf dest=/etc/sysctl.conf
+
+  - include_tasks: tasks/doInstallImageMagick.yml
+  - include_tasks: tasks/doInstallLibreOffice.yml
+  - include_tasks: tasks/doInstallJava.yml
+  - include_tasks: tasks/doInstallPostgres.yml
+  

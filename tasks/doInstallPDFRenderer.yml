@@ -1,0 +1,18 @@
+---
+- name: Create Alfresco dist directory to hold unarchived distribution files
+  file: path={{ alf_home }}/dist state=directory
+
+- name: Copy Alfresco distribution archive
+  copy: src=files/third-party/{{ alf_archive }} dest=/tmp/
+
+- name: Extract Alfresco archive
+  unarchive: src=/tmp/{{ alf_archive }} dest={{ alf_home }}/dist copy=no
+
+- name: Create Alfresco common directory
+  file: path={{ alf_home }}/common state=directory
+
+- name: Extract PDF Renderer
+  unarchive:
+    src: '{{ alf_home }}/dist/{{ alf_archive_root_dir }}/alfresco-pdf-renderer/alfresco-pdf-renderer-1.1-linux.tgz'
+    dest: '{{ alf_home }}/common'
+    copy: no

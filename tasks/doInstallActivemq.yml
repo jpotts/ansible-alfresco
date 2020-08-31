@@ -1,0 +1,12 @@
+---
+- name: Copy ActiveMQ archive
+  copy: src=files/third-party/{{ activemq_archive }} dest=/tmp/
+
+- name: Create ActiveMQ folder
+  file: path={{ alf_home }}/{{ activemq_dir }} state=directory
+
+- name: Extract ActiveMQ archive
+  unarchive: src=/tmp/{{ activemq_archive }} dest={{ alf_home }} copy=no
+
+- name: Create a symlink for the ActiveMQ install dir
+  file: src={{ alf_home }}/{{ activemq_dir }} dest={{ alf_home }}/activemq state=link

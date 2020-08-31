@@ -1,0 +1,22 @@
+---
+- name: Copy Oracle JDBC driver
+  copy: src=files/third-party/{{ alf_db_driver_file }} dest={{ alf_home }}/tomcat/lib
+
+- name: Copy Tomcat catalina.sh
+  template: src=templates/catalina.sh.j2 dest={{ alf_home }}/tomcat/bin/catalina.sh
+
+- name: Copy Tomcat setenv.sh
+  template: src=templates/setenv.sh.j2 dest={{ alf_home }}/tomcat/bin/setenv.sh
+
+- name: Copy Tomcat ctl.sh
+  template: src=templates/ctl.sh.j2 dest={{ alf_home }}/tomcat/scripts/ctl.sh
+
+- name: Copy Tomcat server.xml
+  template: src=templates/server.xml.j2 dest={{ alf_home }}/tomcat/conf/server.xml
+
+- name: Copy web.xml
+  template: src=templates/web.xml.j2 dest={{ alf_home }}/tomcat/conf/web.xml
+
+- name: Copy keystore with server-specific cert
+  copy: src=files/certs/{{ ansible_hostname }}.jks dest={{ alf_home }}/alf_data/keystore/
+  when: ssl_enabled

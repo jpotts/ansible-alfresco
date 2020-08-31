@@ -1,0 +1,12 @@
+---
+- name: Copy Bash Profile
+  template: src=templates/bash_profile.j2 dest=/home/{{ alf_user }}/.bash_profile
+
+- name: Copy SOLR Shared Properties
+  template: src=templates/shared.properties.j2 dest={{ alf_home }}/alfresco-search-services/solrhome/conf/shared.properties
+
+- name: Copy SOLR Script
+  template: src=templates/solr.in.sh.j2 dest={{ alf_home }}/alfresco-search-services/solr.in.sh
+
+- name: Create data directory
+  file: path={{ solr_content_dir }} state=directory

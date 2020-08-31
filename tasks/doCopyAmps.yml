@@ -1,0 +1,18 @@
+---
+- name: Create amps directory
+  file: path='{{ alf_home }}/amps' state=directory
+
+- name: Create amps_share directory
+  file: path='{{ alf_home }}/amps_share' state=directory
+
+- name: Copy repository tier amps
+  copy:
+    src: "{{ item }}"
+    dest: '{{ alf_home }}/amps'
+  with_fileglob: "files/third-party/amps/*"
+
+- name: Copy Share tier amps
+  copy:
+    src: "{{ item }}"
+    dest: '{{ alf_home }}/amps_share'
+  with_fileglob: "files/third-party/amps_share/*"

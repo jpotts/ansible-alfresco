@@ -1,0 +1,9 @@
+---
+- name: Make Java directory
+  file: path=/usr/java state=directory
+
+- name: Copy Java distribution
+  copy: src=files/third-party/openjdk-11.0.1_linux-x64_bin.tar.gz dest=/tmp/openjdk.tar.gz
+
+- name: Unzip Java distribution
+  unarchive: src=/tmp/openjdk.tar.gz dest=/usr/java copy=no

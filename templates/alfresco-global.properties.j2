@@ -1,0 +1,95 @@
+
+dir.root={{ alf_home }}/alf_data
+
+### Host Configuration ###
+alfresco.context={{ alf_context }}
+alfresco.host={{ alf_host }}
+alfresco.port={{ alf_port }}
+alfresco.protocol={{ alf_protocol }}
+share.context={{ share_context }}
+share.host={{ share_host }}
+share.port={{ share_port }}
+share.protocol={{ share_protocol }}
+
+### database connection properties ###
+db.driver={{ alf_db_driver }}
+db.username={{ alf_db_username }}
+db.password={{ alf_db_password }}
+db.name={{ alf_db_name }}
+db.url={{ alf_db_url }}
+# Note: your database must also be able to accept at least this many connections.  Please see your database documentation for instructions on how to configure this.
+db.pool.max=275
+db.pool.validate.query=
+
+# The server mode. Set value here
+# UNKNOWN | TEST | BACKUP | PRODUCTION
+system.serverMode=UNKNOWN
+
+### FTP Server Configuration ###
+ftp.port={{ alf_ftp_port }}
+
+### RMI registry port for JMX ###
+alfresco.rmi.services.port=50500
+alfresco.rmi.services.host={{ ansible_hostname }}
+monitor.rmi.service.port=50501
+alfresco.jmx.connector.enabled=true
+alfresco.jmx.dir={{ alf_home }}/tomcat/shared/classes/alfresco/extension/alfresco-jmx
+
+### External executable locations ###
+ooo.exe=/bin/soffice.bin
+ooo.enabled=true
+ooo.port=8100
+img.root=/
+img.dyn=/lib
+img.exe=/bin/convert
+alfresco-pdf-renderer.root={{ alf_home }}/common/alfresco-pdf-renderer
+alfresco-pdf-renderer.exe=${alfresco-pdf-renderer.root}/alfresco-pdf-renderer
+
+jodconverter.enabled=true
+jodconverter.officeHome={{ alf_home }}/libreoffice
+jodconverter.portNumbers=8100
+
+### Initial admin password ###
+alfresco_user_store.adminpassword={{ alf_initial_admin_password }}
+
+### E-mail site invitation setting ###
+notification.email.siteinvite={{ alf_notification_email }}
+
+### Outbound mail settings ###
+mail.host={{ mail_host }}
+mail.from.default={{ mail_from }}
+mail.from.enabled=false
+
+### License location ###
+dir.license.external={{ alf_home }}
+
+### Solr indexing ###
+index.subsystem.name={{ alf_index_subsystem }}
+dir.keystore=${dir.root}/keystore
+solr.host={{ alf_solr_host }}
+solr.protocol=http
+solr.secureComms=none
+solr.port={{ alf_solr_port }}
+solr.baseUrl=/solr
+
+### Smart Folders Config Properties ###
+smart.folders.enabled={{ alf_smart_folders_enabled }}
+
+aos.baseUrlOverwrite={{ alf_aos_base_url }}
+
+{% if audit_enabled %}
+### Audit Service Settings ###
+audit.enabled=true
+audit.alfresco-access.enabled=true
+audit.alfresco-access.sub-actions.enabled=false
+
+{% endif %}
+
+### Alfresco Cloud Sync ###
+sync.mode=OFF
+
+### Alfresco Transormation Service Settings ###
+
+transform.service.enabled=true
+local.transform.service.enabled=false
+legacy.transform.service.enabled=true

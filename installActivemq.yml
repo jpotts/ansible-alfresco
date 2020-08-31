@@ -1,0 +1,6 @@
+---
+- hosts: '{{ hosts }}'
+  remote_user: alfresco
+  tasks:
+    - include_tasks: tasks/doInstallActivemq.yml
+    - include_tasks: tasks/doCopyActivemqConfig.yml

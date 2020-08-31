@@ -1,0 +1,3 @@
+---
+- name: Install ImageMagick
+  yum: name=ImageMagick state=present

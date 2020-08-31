@@ -1,0 +1,3 @@
+---
+- name: Install LibreOffice Core
+  yum: name=libreoffice-core state=present

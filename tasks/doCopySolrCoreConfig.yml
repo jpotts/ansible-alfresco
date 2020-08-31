@@ -1,0 +1,18 @@
+---
+- name: Copy Alfresco solrcore.properties
+  template: src=templates/solrcore.properties.alfresco.j2 dest={{ solr_home }}/alfresco/conf/solrcore.properties
+
+- name: Copy Archive solrcore.properties
+  template: src=templates/solrcore.properties.archive.j2 dest={{ solr_home }}/archive/conf/solrcore.properties
+
+- name: Copy Alfresco solrconfig.xml
+  template: src=templates/solrconfig.xml.alfresco.j2 dest={{ solr_home }}/alfresco/conf/solrconfig.xml
+
+- name: Copy Archive solrconfig.xml
+  template: src=templates/solrconfig.xml.archive.j2 dest={{ solr_home }}/archive/conf/solrconfig.xml
+
+#- name: Copy Alfresco solr truststore
+#  copy: src=files/ssl.repo.client.truststore dest={{ solr_home }}/alfresco/conf/ssl.repo.client.truststore
+
+#- name: Copy Archive solr truststore
+#  copy: src=files/ssl.repo.client.truststore dest={{ solr_home }}/archive/conf/ssl.repo.client.truststore

@@ -1,0 +1,20 @@
+#
+# Installs Alfresco to the specified hosts.
+#
+# Requires Alfresco distribution archive, Tomcat archive, and AOS archive to
+# reside in files/third-party.
+#
+# Custom AMPs should be placed in files/amps and files/amps_share.
+#
+# Install location depends on alf_home, alf_install_dir, and tomcat_dir.
+#
+---
+- hosts: '{{ hosts }}'
+  remote_user: alfresco
+  tasks:
+    - include_tasks: tasks/doInstallTomcat.yml
+    - include_tasks: tasks/doInstallActivemq.yml
+    - include_tasks: tasks/doInstallAlfresco.yml
+    - include_tasks: tasks/doInstallPDFRenderer.yml
+    - include_tasks: tasks/doCopyAmps.yml
+    - include_tasks: tasks/doApplyAmps.yml

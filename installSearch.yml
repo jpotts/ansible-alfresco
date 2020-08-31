@@ -1,0 +1,13 @@
+#
+# Installs Alfresco Search services to the specified hosts.
+#
+# Requires alfresco-search-services*.zip to be placed in files/third-party. the
+# exact file name is specified in search_archive.
+#
+# Install location depends on alf_home, alf_install_dir, and search_install_dir.
+#
+---
+- hosts: '{{ hosts }}'
+  remote_user: alfresco
+  tasks:
+    - include_tasks: tasks/doInstallSearch.yml

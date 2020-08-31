@@ -1,0 +1,17 @@
+---
+- name: Copy Alfresco Search Services distribution archive
+  copy: src=files/third-party/{{ search_archive }} dest=/tmp/
+
+- stat:
+    path: '{{ search_install_dir }}'
+  register: p
+
+- fail:
+    msg: Search install directory already exists. Delete or rename it before continuing.
+  when: p.stat.exists
+
+- name: Create search install directory
+  file: path={{ search_install_dir }} state=directory
+
+- name: Extract Alfresco archive
+  unarchive: src=/tmp/{{ search_archive }} dest={{ alf_home }} copy=no

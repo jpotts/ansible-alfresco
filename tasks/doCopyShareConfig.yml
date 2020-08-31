@@ -1,0 +1,6 @@
+---
+- name: Copy Share Config Custom
+  template: src=templates/share-config-custom.xml.j2 dest={{ alf_home }}/tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
+
+- name: Copy slingshot app context
+  template: src=templates/custom-slingshot-application-context.xml.j2 dest={{ alf_home }}/tomcat/shared/classes/alfresco/web-extension/custom-slingshot-application-context.xml

@@ -1,0 +1,3 @@
+---
+- name: Copy ActiveMQ env config
+  template: src=templates/activemq-env.j2 dest={{ alf_home }}/{{ activemq_dir }}/bin/env

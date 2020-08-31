@@ -1,0 +1,26 @@
+<alfresco-config>
+    <config evaluator="string-compare" condition="CSRFPolicy" replace="true">
+        <filter>
+            <rule>
+                <request>
+                    <method>GET</method>
+                    <path>/service/enterprise/admin/.*</path>
+                </request>
+                <action name="generateToken">
+                    <param name="session">{token}</param>
+                    <param name="cookie">{token}</param>
+                </action>
+            </rule>
+            <rule>
+                <request>
+                    <method>GET</method>
+                    <path>/s/enterprise/admin/.*</path>
+                </request>
+                <action name="generateToken">
+                    <param name="session">{token}</param>
+                    <param name="cookie">{token}</param>
+                </action>
+            </rule>
+        </filter>
+    </config>
+</alfresco-config>

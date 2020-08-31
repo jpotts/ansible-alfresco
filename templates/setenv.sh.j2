@@ -1,0 +1,12 @@
+# Load Tomcat Native Library
+LD_LIBRARY_PATH={{ alf_home }}/common/lib:$LD_LIBRARY_PATH
+
+JRE_HOME=$JAVA_HOME
+JAVA_OPTS="-XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -Djava.awt.headless=true -Dalfresco.home={{ alf_home }} -XX:ReservedCodeCacheSize=128m $JAVA_OPTS "
+JAVA_OPTS="-Xms512M -Xmx{{ java_opts_xmx }} $JAVA_OPTS " # java-memory-settings
+JAVA_OPTS="$JAVA_OPTS -Dcom.sun.management.jmxremote " # JMX settings
+JAVA_OPTS="$JAVA_OPTS -Djava.io.tmpdir={{ alf_home }}/temp "
+export JAVA_HOME
+export JRE_HOME
+export JAVA_OPTS
+export LD_LIBRARY_PATH

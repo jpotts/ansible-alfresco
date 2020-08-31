@@ -1,0 +1,15 @@
+---
+- name: Copy Bash Profile
+  template: src=templates/bash_profile.j2 dest=/home/{{ alf_user }}/.bash_profile
+
+- name: Create alfresco-jmx directory
+  file: dest={{ alf_home }}/tomcat/shared/classes/alfresco/extension/alfresco-jmx state=directory
+
+- name: Copy JMX access
+  copy: src=files/alfresco-jmxrmi.access dest={{ alf_home }}/tomcat/shared/classes/alfresco/extension/alfresco-jmx/alfresco-jmxrmi.access
+
+- name: Copy JMX access password
+  template: src=templates/alfresco-jmxrmi.password.j2 dest={{ alf_home }}/tomcat/shared/classes/alfresco/extension/alfresco-jmx/alfresco-jmxrmi.password
+
+- name: Copy Web Scripts Config
+  copy: src=files/web-scripts-config-custom.xml dest={{ alf_home }}/tomcat/shared/classes/alfresco/extension/

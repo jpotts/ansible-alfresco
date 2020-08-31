@@ -1,0 +1,45 @@
+---
+- name: Create Alfresco home
+  file: path={{ alf_home }} state=directory
+
+- name: Copy Tomcat archive
+  copy: src=files/third-party/{{ tomcat_archive }} dest=/tmp/
+
+- name: Create Tomcat folder
+  file: path={{ alf_home }}/{{ tomcat_dir }} state=directory
+
+- name: Extract Tomcat archive
+  unarchive: src=/tmp/{{ tomcat_archive }} dest={{ alf_home }} copy=no
+
+- name: Create a symlink for the Tomcat install dir
+  file: src={{ alf_home }}/{{ tomcat_dir }} dest={{ alf_home }}/tomcat state=link
+
+- name: Delete docs webapp
+  file: path={{ alf_home }}/{{ tomcat_dir }}/webapps/docs state=absent
+
+- name: Delete examples webapp
+  file: path={{ alf_home }}/{{ tomcat_dir }}/webapps/examples state=absent
+
+- name: Delete host-manager webapp
+  file: path={{ alf_home }}/{{ tomcat_dir }}/webapps/host-manager state=absent
+
+- name: Delete manager webapp
+  file: path={{ alf_home }}/{{ tomcat_dir }}/webapps/manager state=absent
+
+- name: Delete ROOT webapp
+  file: path={{ alf_home }}/{{ tomcat_dir }}/webapps/ROOT state=absent
+
+- name: Create shared loader classes directory
+  file: path={{ alf_home }}/{{ tomcat_dir }}/shared/classes state=directory
+
+- name: Create shared loader lib directory
+  file: path={{ alf_home }}/{{ tomcat_dir }}/shared/lib state=directory
+
+- name: Configure shared class loader
+  replace:
+    path: '{{ alf_home }}/{{ tomcat_dir }}/conf/catalina.properties'
+    regexp: 'shared.loader='
+    replace: 'shared.loader=${catalina.base}/shared/classes/'
+
+- name: Create Tomcat scripts directory (used by old Alfresco releases)
+  file: path={{ alf_home }}/{{tomcat_dir }}/scripts state=directory

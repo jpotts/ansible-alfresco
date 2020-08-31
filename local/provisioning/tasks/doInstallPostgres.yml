@@ -1,0 +1,17 @@
+---
+- name: Add PostgreSQL RPM
+  yum_repository:
+    name: PostgreSQL
+    description: PostgreSQL
+    baseurl: https://download.postgresql.org/pub/repos/^Cm/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+
+- name: Add postgresql
+  yum: name=postgresql10-server state=present
+
+- name: Initialize the Database
+  command: /usr/pgsql-10/bin/postgresql-10-setup initdb
+  args:
+    creates: /var/lib/pgsql/10/data
+
+- name: Copy pg_hba.conf
+  copy: src=files/pg_hba.conf dest=/var/lib/pgsql/10/data

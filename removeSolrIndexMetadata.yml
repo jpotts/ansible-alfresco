@@ -1,0 +1,15 @@
+---
+- hosts: '{{ hosts }}'
+  remote_user: alfresco
+  tasks:
+  - name: Remove index from alfresco core
+    file: path={{ solr_home }}/alfresco/index state=absent
+
+  - name: Remove snapshot_metadata from alfresco core
+    file: path={{ solr_home }}/alfresco/snapshot_metadata state=absent
+
+  - name: Remove index from archive core
+    file: path={{ solr_home }}/archive/index state=absent
+
+  - name: Remove snapshot_metadata from archive core
+    file: path={{ solr_home }}/archive/snapshot_metadata state=absent

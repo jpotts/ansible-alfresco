@@ -1,0 +1,3 @@
+---
+- name: Copy alfresco global properties file
+  template: src=templates/alfresco-global.properties.j2 dest={{ alf_home }}/tomcat/shared/classes/alfresco-global.properties

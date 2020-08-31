@@ -1,0 +1,5 @@
+---
+- hosts: '{{ hosts }}'
+  remote_user: alfresco
+  tasks:
+  - include_tasks: tasks/doCopySolrConfig.yml

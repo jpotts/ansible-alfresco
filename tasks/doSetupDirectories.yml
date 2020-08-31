@@ -1,0 +1,17 @@
+---
+- stat:
+    path: '{{ alf_home }}'
+  register: sym
+
+- fail:
+    msg: Alfresco home must be a symbolic link or must not exist
+  when: sym.stat.islnk is defined and sym.stat.islnk == False
+
+- name: Remove previous Alfresco home link
+  file: path={{ alf_home }} state=absent
+
+- name: Create base Alfresco install directory
+  file: path={{ alf_install_dir }} state=directory
+
+- name: Create a symlink that points Alfresco home at the install directory
+  file: src={{ alf_install_dir }} dest={{ alf_home }} state=link
