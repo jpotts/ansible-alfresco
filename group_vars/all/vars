@@ -34,7 +34,7 @@ alf_user: "alfresco"
 alf_group: "alfresco"
 java_opts_xmx: 15250M
 
-alf_install_dir: /opt/alfresco-6.2.0
+alf_install_dir: /opt/alfresco-6.2.0-ga
 alf_archive: "alfresco-content-services-community-distribution-6.2.0-ga.zip"
 alf_archive_root_dir: "alfresco-content-services-community-distribution-6.2.0-ga"
 tomcat_archive: "apache-tomcat-8.5.34.tar.gz"
@@ -43,7 +43,7 @@ search_archive: "alfresco-search-services-1.4.0.zip"
 search_install_dir: '{{ alf_install_dir }}/alfresco-search-services'
 
 alf_db_driver: org.postgresql.Driver
-alf_db_driver_file: postgresql-42.2.1.jar
+alf_db_driver_file: postgresql-42.2.5.jar
 alf_db_username: alfresco
 alf_db_password: "{{ vault_alf_db_password }}"
 alf_db_name: alfresco
