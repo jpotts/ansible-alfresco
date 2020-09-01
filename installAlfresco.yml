@@ -4,7 +4,7 @@
 # Requires Alfresco distribution archive, Tomcat archive, and AOS archive to
 # reside in files/third-party.
 #
-# Custom AMPs should be placed in files/amps and files/amps_share.
+# Custom AMPs should be placed in files/third-party/amps and files/third-party/amps_share.
 #
 # Install location depends on alf_home, alf_install_dir, and tomcat_dir.
 #
@@ -18,3 +18,7 @@
     - include_tasks: tasks/doInstallPDFRenderer.yml
     - include_tasks: tasks/doCopyAmps.yml
     - include_tasks: tasks/doApplyAmps.yml
+    - include_tasks: tasks/doCopyGlobalProperties.yml
+    - include_tasks: tasks/doCopyTomcatConfig.yml
+    - include_tasks: tasks/doCopyShareConfig.yml
+    - include_tasks: tasks/doCopyAlfrescoConfig.yml
