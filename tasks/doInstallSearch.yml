@@ -13,5 +13,8 @@
 - name: Create search install directory
   file: path={{ search_install_dir }} state=directory
 
+- name: Create search temp directory
+  file: path={{ alf_home }}/temp state=directory
+
 - name: Extract Alfresco archive
   unarchive: src=/tmp/{{ search_archive }} dest={{ alf_home }} copy=no
