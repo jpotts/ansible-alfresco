@@ -36,18 +36,19 @@ alfresco.jmx.connector.enabled=true
 alfresco.jmx.dir={{ alf_home }}/tomcat/shared/classes/alfresco/extension/alfresco-jmx
 
 ### External executable locations ###
-ooo.exe=/bin/soffice.bin
-ooo.enabled=true
-ooo.port=8100
-img.root=/
-img.dyn=/lib
-img.exe=/bin/convert
+ooo.exe={{jodconverter_office_home}}/bin/soffice.bin
+ooo.enabled={{ jodconverter_enabled }}
+ooo.port={{ jodconverter_port }}
+img.root={{ imagemagick_root }}
+img.dyn={{ imagemagick_dynlib }}
+img.exe={{ imagemagick_bin }}
+
 alfresco-pdf-renderer.root={{ alf_home }}/common/alfresco-pdf-renderer
 alfresco-pdf-renderer.exe=${alfresco-pdf-renderer.root}/alfresco-pdf-renderer
 
-jodconverter.enabled=true
-jodconverter.officeHome={{ alf_home }}/libreoffice
-jodconverter.portNumbers=8100
+jodconverter.enabled={{ jodconverter_enabled }}
+jodconverter.officeHome={{ jodconverter_office_home }}
+jodconverter.portNumbers={{ jodconverter_port }}
 
 ### Initial admin password ###
 alfresco_user_store.adminpassword={{ alf_initial_admin_password }}
