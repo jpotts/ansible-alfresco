@@ -1,6 +1,6 @@
 ---
 - name: Run Alfresco MMT to install repo tier AMPs
-  shell: 'java -jar {{ alf_home }}/bin/alfresco-mmt*.jar install {{ alf_home }}/amps {{ alf_home }}/{{ tomcat_dir }}/webapps/alfresco.war -directory -nobackup -force'
+  shell: '{{ alf_java_home }}/bin/java -jar {{ alf_home }}/bin/alfresco-mmt*.jar install {{ alf_home }}/amps {{ alf_home }}/{{ tomcat_dir }}/webapps/alfresco.war -directory -nobackup -force'
 
 - name: Run Alfresco MMT to install Share tier AMPs
-  shell: 'java -jar {{ alf_home }}/bin/alfresco-mmt*.jar install {{ alf_home }}/amps_share {{ alf_home }}/{{ tomcat_dir }}/webapps/share.war -directory -nobackup -force'
+  shell: '{{ alf_java_home }}/bin/java -jar {{ alf_home }}/bin/alfresco-mmt*.jar install {{ alf_home }}/amps_share {{ alf_home }}/{{ tomcat_dir }}/webapps/share.war -directory -nobackup -force'
