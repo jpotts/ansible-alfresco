@@ -1,5 +1,5 @@
 ---
-- name: Copy Oracle JDBC driver
+- name: Copy JDBC driver
   copy: src=files/third-party/{{ alf_db_driver_file }} dest={{ alf_home }}/tomcat/lib
 
 - name: Copy Tomcat catalina.sh
