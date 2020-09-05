@@ -69,6 +69,14 @@ alf_ftp_port: 2121
 alf_jmx_monitor_password: "{{ vault_alf_jmx_monitor_password }}"
 alf_jmx_control_password: "{{ vault_alf_jmx_control_password }}"
 
+imagemagick_root: /
+imagemagick_dynlib: /lib
+imagemagick_bin: /bin/convert
+
+jodconverter_enabled: true
+jodconverter_office_home: "{{ alf_home }}/libreoffice"
+jodconverter_port: 8100
+
 solr_java_mem: -Xms512m -Xmx512m
 solr_port: 8983
 solr_content_dir: "{{ alf_home }}/alfresco-search-services"

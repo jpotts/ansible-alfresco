@@ -5,14 +5,28 @@
 192.168.33.10
 
 [alfresco_dev]
+alfdev1.metaversant.com
+#alfdev2.metaversant.com
+#alfdev3.metaversant.com
 
 [solr_dev]
+solrdev1.metaversant.com
+#solrdev2.metaversant.com
 
 [alfresco_test]
+alftest1.metaversant.com
+#alftest2.metaversant.com
+#alftest3.metaversant.com
 
 [solr_test]
+solrtest1.metaversant.com
+#solrtest2.metaversant.com
 
 [alfresco_prod]
+alfprod1.metaversant.com
+#alfprod2.metaversant.com
+#alfprod3.metaversant.com
 
 [solr_prod]
-
+solrprod1.metaversant.com
+#solrprod2.metaversant.com
