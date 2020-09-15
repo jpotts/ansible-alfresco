@@ -1,6 +1,10 @@
 alf_host: alfdev1.metaversant.com
+alf_port: 8443
+alf_protocol: https
 
 share_host: alfdev1.metaversant.com
+share_port: 8443
+share_protocol: https
 
 alf_solr_host: solrdev1.metaversant.com
 
@@ -9,3 +13,7 @@ alf_db_url: "jdbc:postgresql://alfresco-dev.c8uozf6iuroi.us-east-1.rds.amazonaws
 jodconverter_office_home: /usr/bin
 
 imagemagick_bin: /usr/bin/convert
+
+ssl_enabled: true
+alf_tomcat_web_port: 8443
+alf_tomcat_protocol: https
