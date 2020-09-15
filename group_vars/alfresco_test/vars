@@ -1,0 +1,11 @@
+alf_host: alftest1.metaversant.com
+
+share_host: alftest1.metaversant.com
+
+alf_solr_host: solrtest1.metaversant.com
+
+alf_db_url: "jdbc:postgresql://alfresco-test.c8uozf6iuroi.us-east-1.rds.amazonaws.com:5432/${db.name}"
+
+jodconverter_office_home: /usr/bin
+
+imagemagick_bin: /usr/bin/convert
