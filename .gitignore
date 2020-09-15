@@ -2,4 +2,5 @@ files/third-party
 local/provisioning/files/third-party
 local/.vagrant
 .vault-passwd
+files/certs
 

@@ -102,3 +102,6 @@ thumbnails_enabled: true
 transformations_enabled: true
 
 ssl_enabled: false
+alf_keystore_key_alias: server
+alf_keystore_password: "{{ vault_alf_keystore_password }}"
+alf_truststore_password: "{{ vault_alf_truststore_password }}"

@@ -69,55 +69,7 @@
     <Connector port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
                redirectPort="8443" />
-    <!-- A "Connector" using the shared thread pool-->
-    <!--
-    <Connector executor="tomcatThreadPool"
-               port="8080" protocol="HTTP/1.1"
-               connectionTimeout="20000"
-               redirectPort="8443" />
-    -->
-    <!-- Define a SSL/TLS HTTP/1.1 Connector on port 8443
-         This connector uses the NIO implementation. The default
-         SSLImplementation will depend on the presence of the APR/native
-         library and the useOpenSSL attribute of the
-         AprLifecycleListener.
-         Either JSSE or OpenSSL style configuration may be used regardless of
-         the SSLImplementation selected. JSSE style configuration is used below.
-    -->
-    <!--
-    <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
-               maxThreads="150" SSLEnabled="true">
-        <SSLHostConfig>
-            <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
-                         type="RSA" />
-        </SSLHostConfig>
-    </Connector>
-    -->
-    <!-- Define a SSL/TLS HTTP/1.1 Connector on port 8443 with HTTP/2
-         This connector uses the APR/native implementation which always uses
-         OpenSSL for TLS.
-         Either JSSE or OpenSSL style configuration may be used. OpenSSL style
-         configuration is used below.
-    -->
-    <!--
-    <Connector port="8443" protocol="org.apache.coyote.http11.Http11AprProtocol"
-               maxThreads="150" SSLEnabled="true" >
-        <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
-        <SSLHostConfig>
-            <Certificate certificateKeyFile="conf/localhost-rsa-key.pem"
-                         certificateFile="conf/localhost-rsa-cert.pem"
-                         certificateChainFile="conf/localhost-rsa-chain.pem"
-                         type="RSA" />
-        </SSLHostConfig>
-    </Connector>
-    -->
-    <!--
-    <Connector port="8443" URIEncoding="UTF-8" protocol="org.apache.coyote.http11.Http11Protocol"
-               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
-               clientAuth="false" sslProtocol="TLS" maxHttpHeaderSize="32768"
-               truststoreFile="{{ alf_home }}/alf_data/keystore/ssl.truststore" truststorePass="kT9X6oe68t"
-               keystoreFile="{{ alf_home }}/alf_data/keystore/ssl.keystore" keystorePass="kT9X6oe68t" keyAlias="server" />
-    -->
+
     <!-- Define an AJP 1.3 Connector on port 8009 -->
     {% if proxy_enabled %}
     <Connector port="{{ alf_tomcat_ajp_port }}" protocol="AJP/1.3" redirectPort="8080" proxyName="{{ proxy_host }}" proxyPort="{{ proxy_port }}" secure="{{ proxy_secure }}" scheme="{{ proxy_scheme }}" />
@@ -128,7 +80,8 @@
     {% if ssl_enabled %}
     <Connector port="{{ alf_tomcat_web_port }}" URIEncoding="UTF-8" protocol="org.apache.coyote.http11.Http11Protocol"
                maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
-               clientAuth="false" sslProtocol="TLS" maxHttpHeaderSize="32768" keystoreFile="{{ alf_home }}/alf_data/keystore/{{ ansible_hostname }}.jks" keystorePass="%zCH32mC" keyAlias="server" />
+               clientAuth="false" sslProtocol="TLS" maxHttpHeaderSize="32768"
+               keystoreFile="{{ alf_home }}/alf_data/keystore/{{ ansible_hostname }}.jks" keystorePass="{{ alf_keystore_password }}" keyAlias="{{ alf_keystore_key_alias }}" />
     {% endif %}
 
     <!-- An Engine represents the entry point (within Catalina) that processes

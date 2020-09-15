@@ -4,7 +4,7 @@
   vars:
     alf_user: "alfresco"
     alf_group: "alfresco"
-    pub_ssh_key: "/home/jpotts/.ssh/id_rsa.pub"
+    pub_ssh_key: "/Users/jpotts/.ssh/id_rsa.pub"
 
   tasks:
   - name: Install selinux bindings
