@@ -1,7 +1,4 @@
 ---
-- name: Copy Bash Profile
-  template: src=templates/bash_profile.j2 dest=/home/{{ alf_user }}/.bash_profile
-
 - name: Create alfresco-jmx directory
   file: dest={{ alf_home }}/tomcat/shared/classes/alfresco/extension/alfresco-jmx state=directory
 
