@@ -107,7 +107,11 @@ variables, and, optionally, a file called vault for that group's encrypted
 variables.
 * The ansible.cfg file points to the Ansible Vault password file location which
 is .vault-passwd. This password should be shared with your team, but don't
-check it in to source code control.
+check it in to source code control. NOTE: This file is not distributed as part
+of this project. You'll need to create your own. To do that, just create a file
+named ".vault-passwd" and put it in the root of your project (adjacent to this
+README.md file). The file should contain one line with the value of your vault
+password.
 * Variables that need to be encrypted will have a plain variable name and a
 vault variable name. For example, in group_vars/all/vars the following will use
 the value from the vault for the Alfresco DB password:
@@ -119,7 +123,22 @@ to edit a vault file (in this example, it is the all group, but each group can
 have its own vault file).
 * Ansible Vault will launch a configurable editor. On save, the value will be
 encrypted using the Ansible Vault password.
-* When setting up a new vault for the first time use `ansible-vault encrypt group_vars/all/vault` to encrypt the file. After that, just use `ansible-vault edit`.
+* To set values for the vault variables that are used in this project, copy and
+paste the following into your vault file (use whatever values you want, these
+mimic what used to be set by the installer):
+
+      vault_alf_db_password: admin
+      vault_alf_initial_admin_password: "209c6174da490caeb422f3fa5a7ae634"
+      vault_alf_jmx_monitor_password: monitor_password
+      vault_alf_jmx_control_password: control_password
+      vault_alf_keystore_password: kT9X6oe68t
+      vault_alf_truststore_password: kT9X6oe68t
+
+* When setting up a new vault for the first time use `ansible-vault encrypt group_vars/all/vault` to encrypt the file. After that, just use `ansible-vault edit group_vars/all/vault`.
+* You should now have an encrypted vault file that uses your own vault password
+that is stored in .vault-passwd. When you do `ansible-vault edit` you should
+see the values for the database password, JMX passwords, and key/truststore
+passwords.
 
 Remember that secrets are only encrypted on your local machine. Ansible
 decrypts the value in memory when the playbook runs, and then delivers the

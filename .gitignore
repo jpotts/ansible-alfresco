@@ -3,4 +3,7 @@ local/provisioning/files/third-party
 local/.vagrant
 .vault-passwd
 files/certs
-
+group_vars/all/vault
+group_vars/alfresco_dev/vault
+group_vars/alfresco_test/vault
+group_vars/alfresco_prod/vault
